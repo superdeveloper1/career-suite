@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteStore | Professional Portfolio Showcase</title>
+    <meta name="description"
+        content="A premium e-commerce management platform featuring real-time inventory synchronization and advanced category management.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i data-lucide="shopping-cart"></i>
+                <span>EliteStore</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../resume/index.html">Resume</a></li>
+                <li><a href="../cover-letter/index.html">Cover Letter</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#tech">Tech Stack</a></li>
+                <li><a href="#demo">Live Demo</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="reveal">Elevating E-Commerce <br><span class="gradient-text">Management</span></h1>
+                <p class="reveal delay-1">A high-performance management dashboard built for the modern merchant.
+                    Featuring real-time inventory tracking, dynamic scaling, and premium user experience.</p>
+                <div class="hero-buttons reveal delay-2">
+                    <a href="#demo" class="btn btn-primary">View Project</a>
+                    <a href="#features" class="btn btn-secondary">Key Features</a>
+                </div>
+            </div>
+            <div class="hero-visual reveal slide-up">
+                <div class="mockup-container">
+                    <img src="assets/app-mockup.png" alt="EliteStore Dashboard Mockup" class="floating-mockup">
+                    <div class="glass-orb orb-1"></div>
+                    <div class="glass-orb orb-2"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2 class="section-title">Core Innovations</h2>
+            <div class="features-grid">
+                <div class="feature-card glass reveal">
+                    <i data-lucide="bar-chart-3" class="feature-icon"></i>
+                    <h3>Live Inventory Sync</h3>
+                    <p>Proprietary synchronization logic that ensures "Actual Inventory" always mirrors physical stock
+                        with 1:1 accuracy, updated instantly on every transaction.</p>
+                </div>
+                <div class="feature-card glass reveal">
+                    <i data-lucide="layers" class="feature-icon"></i>
+                    <h3>Dynamic Categories</h3>
+                    <p>An intelligent auto-discovery system that organizes products into category clusters and tracks
+                        aggregate units across the entire store architecture.</p>
+                </div>
+                <div class="feature-card glass reveal">
+                    <i data-lucide="shield-check" class="feature-icon"></i>
+                    <h3>Admin Integrity</h3>
+                    <p>Secured admin workflows for product lifecycles, from ingestion and stock repair logic to advanced
+                        inventory bulk actions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="tech-stack glass">
+            <h2 class="section-title">Built with Precision</h2>
+            <div class="stack-icons">
+                <div class="tech-item"><i data-lucide="code-2"></i><span>React & TypeScript</span></div>
+                <div class="tech-item"><i data-lucide="palette"></i><span>Tailwind & Shadcn UI</span></div>
+                <div class="tech-item"><i data-lucide="database"></i><span>LocalStorage Persistence</span></div>
+                <div class="tech-item"><i data-lucide="zap"></i><span>Vite Engine</span></div>
+            </div>
+        </section>
+
+        <section id="demo" class="cta-section">
+            <div class="cta-card glass reveal">
+                <h2>Ready to Explore?</h2>
+                <p>Experience the seamless flow of EliteStore. From the tabbed category view to the power-user admin
+                    dashboard.</p>
+                <a href="http://localhost:8080/" class="btn btn-primary">Launch Application</a>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container glass reveal">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Have a question or want to discuss a project? Reach out through the form or using the links
+                        below.</p>
+                    <div class="info-items">
+                        <div class="info-item">
+                            <i data-lucide="mail"></i>
+                            <span>isaiasgeronimo12@gmail.com</span>
+                        </div>
+                        <div class="info-item">
+                            <i data-lucide="map-pin"></i>
+                            <span>Bronx, NY</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i data-lucide="github"></i></a>
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <span>Send Message</span>
+                        <i data-lucide="send"></i>
+                    </button>
+                    <div id="form-status" class="form-status"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 EliteStore Portfolio. Designed for excellence.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

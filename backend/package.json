@@ -1,0 +1,16 @@
+{
+  "name": "email-backend",
+  "version": "1.0.0",
+  "main": "sendEmail.js",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemailer": "^7.0.12"
+  },
+  "devDependencies": {
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__traverse": "^7.28.0"
+  }
+}
