@@ -174,15 +174,31 @@ const Index = () => {
   const [editingId, setEditingId] = useState<number | null>(null);
 
   const [categories, setCategories] = useState(() => {
-    const saved = localStorage.getItem('categories');
-    if (saved) return JSON.parse(saved);
-    return [
+    const defaultCategories = [
       { name: 'Electronics', count: 0, image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=200&auto=format&fit=crop&q=80' },
       { name: 'Fashion', count: 0, image: 'https://images.unsplash.com/photo-1445205170230-053b830c6050?w=200&auto=format&fit=crop&q=80' },
       { name: 'Home & Decor', count: 0, image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=200&auto=format&fit=crop&q=80' },
       { name: 'Accessories', count: 0, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&auto=format&fit=crop&q=80' },
       { name: 'Sports', count: 0, image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=200&auto=format&fit=crop&q=80' }
     ];
+
+    try {
+      const saved = localStorage.getItem('categories');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Ensure all categories have images, merge with defaults if needed
+        return parsed.map((cat: any) => {
+          const defaultCat = defaultCategories.find(d => d.name === cat.name);
+          return {
+            ...cat,
+            image: cat.image || defaultCat?.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?w=200&auto=format&fit=crop&q=80'
+          };
+        });
+      }
+    } catch (e) {
+      console.error('Failed to load categories from localStorage', e);
+    }
+    return defaultCategories;
   });
 
   useEffect(() => {
