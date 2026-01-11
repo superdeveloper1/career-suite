@@ -453,60 +453,89 @@ const Index = () => {
 
       {/* Hero Section with Carousel */}
       <section className="relative bg-muted overflow-hidden">
-        <Carousel className="w-full" opts={{ loop: true }}>
-          <CarouselContent>
-            {products.slice(0, 4).map((product) => (
-              <CarouselItem key={product.id}>
-                <div className="relative h-[500px] w-full bg-black">
-                  {/* Background Image with Overlay */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center opacity-60 transition-opacity duration-500"
-                    style={{ backgroundImage: `url(${product.image})` }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent" />
+        {products.length > 0 ? (
+          <Carousel className="w-full" opts={{ loop: true }}>
+            <CarouselContent>
+              {products.slice(0, 4).map((product) => (
+                <CarouselItem key={product.id}>
+                  <div className="relative h-[500px] w-full bg-black">
+                    {/* Background Image with Overlay */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center opacity-60 transition-opacity duration-500"
+                      style={{ backgroundImage: `url(${product.image})` }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent" />
 
-                  {/* Content */}
-                  <div className="relative container mx-auto px-4 h-full flex flex-col justify-center text-white z-10">
-                    <div className="max-w-2xl animate-in slide-in-from-left duration-700 fade-in">
-                      <Badge className="mb-4 bg-yellow-500 text-black hover:bg-yellow-400 border-none text-md px-3 py-1">
-                        {product.badge || 'Featured'}
-                      </Badge>
-                      <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
-                        {product.name}
-                      </h1>
-                      <p className="text-xl text-gray-200 mb-8 max-w-lg">
-                        Experience premium quality and style. Get the best items from our {product.category} collection.
-                      </p>
-                      <div className="flex flex-wrap gap-4">
-                        <Button
-                          size="lg"
-                          className="bg-white text-black hover:bg-gray-200 text-lg px-8 py-6 rounded-full font-semibold transition-transform hover:scale-105"
-                          onClick={() => {
-                            addItem(product);
-                            toast({ title: "Added to cart", description: `${product.name} has been added.` })
-                          }}
-                        >
-                          <ShoppingCart className="mr-2 h-5 w-5" /> Buy Now - ${product.price}
-                        </Button>
-                        <Link to={`/product/${product.id}`}>
+                    {/* Content */}
+                    <div className="relative container mx-auto px-4 h-full flex flex-col justify-center text-white z-10">
+                      <div className="max-w-2xl animate-in slide-in-from-left duration-700 fade-in">
+                        <Badge className="mb-4 bg-yellow-500 text-black hover:bg-yellow-400 border-none text-md px-3 py-1">
+                          {product.badge || 'Featured'}
+                        </Badge>
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
+                          {product.name}
+                        </h1>
+                        <p className="text-xl text-gray-200 mb-8 max-w-lg">
+                          Experience premium quality and style. Get the best items from our {product.category} collection.
+                        </p>
+                        <div className="flex flex-wrap gap-4">
                           <Button
-                            variant="outline"
                             size="lg"
-                            className="bg-transparent border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-full font-semibold"
+                            className="bg-white text-black hover:bg-gray-200 text-lg px-8 py-6 rounded-full font-semibold transition-transform hover:scale-105"
+                            onClick={() => {
+                              addItem(product);
+                              toast({ title: "Added to cart", description: `${product.name} has been added.` })
+                            }}
                           >
-                            View Details
+                            <ShoppingCart className="mr-2 h-5 w-5" /> Buy Now - ${product.price}
                           </Button>
-                        </Link>
+                          <Link to={`/product/${product.id}`}>
+                            <Button
+                              variant="outline"
+                              size="lg"
+                              className="bg-transparent border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-full font-semibold"
+                            >
+                              View Details
+                            </Button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4 bg-black/50 text-white border-none hover:bg-black/70" />
+            <CarouselNext className="right-4 bg-black/50 text-white border-none hover:bg-black/70" />
+          </Carousel>
+        ) : (
+          <div className="relative h-[500px] w-full bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="relative container mx-auto px-4 h-full flex flex-col justify-center text-white z-10">
+              <div className="max-w-3xl mx-auto text-center">
+                <Badge className="mb-6 bg-white/20 text-white border-white/40 text-lg px-4 py-2">
+                  Welcome to EliteStore
+                </Badge>
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
+                  Your Premium Shopping Destination
+                </h1>
+                <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto">
+                  Browse our curated collection of premium products. Login as admin to add your first products and start selling!
+                </p>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <Link to="/products">
+                    <Button
+                      size="lg"
+                      className="bg-white text-black hover:bg-gray-200 text-lg px-8 py-6 rounded-full font-semibold"
+                    >
+                      Browse Categories
+                    </Button>
+                  </Link>
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="left-4 bg-black/50 text-white border-none hover:bg-black/70" />
-          <CarouselNext className="right-4 bg-black/50 text-white border-none hover:bg-black/70" />
-        </Carousel>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Categories */}
