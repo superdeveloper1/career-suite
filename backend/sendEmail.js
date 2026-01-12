@@ -32,7 +32,7 @@ envContent.split(/\r?\n/).forEach(line => {
 });
 
 console.log('--- Email Server Debug ---');
-console.log('Using hardcoded credentials for:', 'isaiasgeronimo12@gmail.com');
+console.log('Using credentials for:', process.env.EMAIL_USER);
 console.log('--------------------------');
 
 const app = express();
@@ -44,8 +44,17 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: 'isaiasgeronimo12@gmail.com',
-    pass: 'enfbduhbbbqoxysr'
+    user: process.env.EMAIL_USER,
+    pass: (process.env.EMAIL_PASS || '').replace(/\s+/g, '')
+  }
+});
+
+// Verify connection configuration
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('Error connecting to email server:', error);
+  } else {
+    console.log('Email server is ready to send emails');
   }
 });
 
@@ -72,8 +81,8 @@ app.post('/send-contact', async (req, res) => {
     // Send email TO the admin (hardcoded as the sender for now, or could make configurable)
     // The "from" is the system email, but we reply-to the user's email
     await transporter.sendMail({
-      from: 'isaiasgeronimo12@gmail.com', // System sender
-      to: 'isaiasgeronimo12@gmail.com',   // Admin receives the contact form
+      from: process.env.EMAIL_USER, // System sender
+      to: process.env.EMAIL_USER,   // Admin receives the contact form
       replyTo: email,                     // Reply directly to the user
       subject: `New Contact Message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
